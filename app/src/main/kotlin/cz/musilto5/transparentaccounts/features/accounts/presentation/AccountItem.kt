@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
+import cz.musilto5.transparentaccounts.features.accounts.presentation.model.AccountViewObject
 
 /**
  * Composable for a single account row in a paged list.
@@ -22,7 +22,7 @@ fun AccountListItem(
 ) {
     when (state) {
         is AccountListItemState.Placeholder -> AccountListItemPlaceholder(modifier = modifier)
-        is AccountListItemState.Loaded -> AccountItem(account = state.account, modifier = modifier)
+        is AccountListItemState.Loaded -> AccountItem(viewObject = state.viewObject, modifier = modifier)
     }
 }
 
@@ -38,7 +38,7 @@ private fun AccountListItemPlaceholder(modifier: Modifier = Modifier) {
 
 @Composable
 fun AccountItem(
-    account: Account,
+    viewObject: AccountViewObject,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -48,17 +48,17 @@ fun AccountItem(
         )
     ) {
         Text(
-            text = account.name ?: "—",
+            text = viewObject.name,
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(12.dp)
         )
         Text(
-            text = account.bankAccount?.toString() ?: "",
+            text = viewObject.bankAccount,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
         )
         Text(
-            text = account.currency?.toString() ?: "",
+            text = viewObject.currency,
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
         )

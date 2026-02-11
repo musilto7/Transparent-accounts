@@ -1,6 +1,6 @@
 package cz.musilto5.transparentaccounts.features.accounts.presentation
 
-import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
+import cz.musilto5.transparentaccounts.features.accounts.presentation.model.AccountViewObject
 
 /**
  * Represents a single slot in the paged account list.
@@ -8,5 +8,5 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
  */
 sealed class AccountListItemState {
     data object Placeholder : AccountListItemState()
-    data class Loaded(val account: Account) : AccountListItemState()
+    data class Loaded(val viewObject: AccountViewObject) : AccountListItemState()
 }
