@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: Česká spořitelna Transparent Accounts API
+  version: 3.0.0
+  description: |
+    API pro přístup k transparentním účtům České spořitelny.
+    Dokumentace: https://developers.erstegroup.com/docs/apis/bank.csas/bank.csas.v3%2FtransparentAccounts
+servers:
+  - url: https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v3/transparentAccounts
+    description: Sandbox Environment
+  - url: https://api.csas.cz/webapi/api/v3/transparentAccounts
+    description: Production Environment (base URL se může lišit dle dokumentace)
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: WEB-API-key
+  schemas:
+    AccountListResponse:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        pageCount:
+          type: integer
+        recordCount:
+          type: integer
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountReference'
+
+    AccountReference:
+      type: object
+      properties:
+        id:
+          type: string
+        accountNumber:
+          type: string
+        bankCode:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+
+    AccountDetail:
+      allOf:
+        - $ref: '#/components/schemas/AccountReference'
+        - type: object
+          properties:
+            balance:
+              type: number
+              format: float
+            iban:
+              type: string
+            description:
+              type: string
+            note:
+              type: string
+
+    TransactionListResponse:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        pageCount:
+          type: integer
+        recordCount:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+
+    Transaction:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: number
+            currency:
+              type: string
+        processingDate:
+          type: string
+          format: date-time
+        description:
+          type: string
+        sender:
+          type: object
+          properties:
+            name:
+              type: string
+            accountNumber:
+              type: string
+            bankCode:
+              type: string
+        variableSymbol:
+          type: string
+        constantSymbol:
+          type: string
+        specificSymbol:
+          type: string
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /:
+    get:
+      summary: Získat seznam transparentních účtů
+      operationId: getAccounts
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+          description: Číslo stránky (od 0)
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Počet položek na stránku
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: Filtr pro vyhledávání (např. název účtu)
+      responses:
+        '200':
+          description: Seznam účtů
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+
+  /{id}:
+    get:
+      summary: Detail transparentního účtu
+      operationId: getAccountDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID účtu (nebo číslo účtu)
+      responses:
+        '200':
+          description: Detail účtu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetail'
+
+  /{id}/transactions:
+    get:
+      summary: Seznam transakcí na účtu
+      operationId: getAccountTransactions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: size
+          in: query
+          schema:
+            type: integer
+        - name: dateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Datum od (YYYY-MM-DD)
+        - name: dateTo
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Datum do (YYYY-MM-DD)
+      responses:
+        '200':
+          description: Historie transakcí
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse'
