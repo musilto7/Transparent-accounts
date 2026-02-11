@@ -41,6 +41,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "TRANSPARENT_ACCOUNTS_BASE_URL", "\"https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v3/transparentAccounts\"")
     }
 
     buildTypes {

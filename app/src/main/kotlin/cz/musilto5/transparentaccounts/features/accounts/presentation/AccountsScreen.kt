@@ -12,7 +12,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import cz.musilto5.transparentaccounts.common.presentation.appendLoadStateItem
 import cz.musilto5.transparentaccounts.common.presentation.refreshLoadStateItem
 import cz.musilto5.transparentaccounts.common.presentation.theme.LocalAccountListSpacing
-import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountReferenceDto
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -29,7 +29,7 @@ fun AccountsScreen(
 
 @Composable
 private fun AccountsList(
-    accounts: LazyPagingItems<AccountReferenceDto>,
+    accounts: LazyPagingItems<Account>,
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalAccountListSpacing.current
@@ -44,11 +44,13 @@ private fun AccountsList(
     }
 }
 
-private fun LazyListScope.accountsListItems(accounts: LazyPagingItems<AccountReferenceDto>) {
+private fun LazyListScope.accountsListItems(accounts: LazyPagingItems<Account>) {
     items(
         count = accounts.itemCount,
-        key = { index: Int -> accounts[index]?.id ?: index }
+        key = { index: Int -> accounts[index]?.id?.value ?: index }
     ) { index: Int ->
-        AccountListItem(account = accounts[index])
+        val state = accounts[index]?.let { AccountListItemState.Loaded(it) }
+            ?: AccountListItemState.Placeholder
+        AccountListItem(state = state)
     }
 }

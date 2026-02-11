@@ -1,6 +1,6 @@
 package cz.musilto5.transparentaccounts.features.accounts.data.datasource
 
-import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountId
+import cz.musilto5.transparentaccounts.common.domain.model.AccountId
 import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountDetailDto
 import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountListResponseDto
 import cz.musilto5.transparentaccounts.features.accounts.data.dto.TransactionListResponseDto

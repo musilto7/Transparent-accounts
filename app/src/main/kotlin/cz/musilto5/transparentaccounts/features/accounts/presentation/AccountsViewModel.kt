@@ -5,8 +5,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import cz.musilto5.transparentaccounts.features.accounts.data.paging.TransparentAccountsPagingSource
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
 import cz.musilto5.transparentaccounts.features.accounts.domain.repository.TransparentAccountsRepository
-import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountReferenceDto
 import kotlinx.coroutines.flow.Flow
 
 class AccountsViewModel(
@@ -15,7 +15,7 @@ class AccountsViewModel(
 
     private val pageSize = 20
 
-    val accountsFlow: Flow<PagingData<AccountReferenceDto>> = Pager(
+    val accountsFlow: Flow<PagingData<Account>> = Pager(
         config = PagingConfig(
             pageSize = pageSize,
             enablePlaceholders = false

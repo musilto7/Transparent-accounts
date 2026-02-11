@@ -1,9 +1,9 @@
 package cz.musilto5.transparentaccounts.features.accounts.domain.repository
 
-import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountId
-import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountDetailDto
-import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountListResponseDto
-import cz.musilto5.transparentaccounts.features.accounts.data.dto.TransactionListResponseDto
+import cz.musilto5.transparentaccounts.common.domain.model.AccountId
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountDetail
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountListResult
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.TransactionListResult
 import kotlinx.datetime.LocalDate
 
 /**
@@ -16,9 +16,9 @@ interface TransparentAccountsRepository {
         page: Int = 0,
         size: Int = 10,
         filter: String? = null
-    ): AccountListResponseDto
+    ): AccountListResult
 
-    suspend fun getAccountDetail(id: AccountId): AccountDetailDto
+    suspend fun getAccountDetail(id: AccountId): AccountDetail
 
     suspend fun getAccountTransactions(
         id: AccountId,
@@ -26,5 +26,5 @@ interface TransparentAccountsRepository {
         size: Int? = null,
         dateFrom: LocalDate? = null,
         dateTo: LocalDate? = null
-    ): TransactionListResponseDto
+    ): TransactionListResult
 }
