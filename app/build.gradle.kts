@@ -5,9 +5,10 @@ plugins {
     alias(libs.plugins.openapi.generator)
 }
 
-val apiPackageName = "cz.musilto5.transparentaccounts"
+val dataPackageName = "cz.musilto5.transparentaccounts.features.accounts.data"
 val openapiInputSpec = file("src/main/openapi/transparent-accounts-api.yaml")
-val openapiOutputDir = file("build/generated/sources/openapi")
+// Generated sources only under app/build (never in project/src)
+val openapiOutputDir = project.layout.buildDirectory.dir("generated/sources/openapi").get().asFile
 
 val apiKey: String = run {
     (project.findProperty("API_KEY_ID") as String?).takeIf { !it.isNullOrBlank() }
@@ -68,16 +69,18 @@ openApiGenerate {
     generatorName.set("kotlin")
     library.set("multiplatform")
     inputSpec.set(openapiInputSpec.absolutePath)
-    outputDir.set(openapiOutputDir.absolutePath)
-    apiPackage.set("$apiPackageName.service")
-    modelPackage.set("$apiPackageName.model")
+    // Must be under build dir (app/build/generated/sources/openapi)
+    outputDir.set(project.layout.buildDirectory.dir("generated/sources/openapi").get().asFile.absolutePath)
+    apiPackage.set("$dataPackageName.api")
+    modelPackage.set("$dataPackageName.dto")
     generateApiTests.set(false)
     generateApiDocumentation.set(false)
     generateModelTests.set(false)
     generateModelDocumentation.set(false)
     additionalProperties.set(mapOf(
         "dateLibrary" to "kotlinx-datetime",
-        "sourceFolder" to ""  // output directly into outputDir (no extra src/main/kotlin)
+        "sourceFolder" to "",
+        "modelNameSuffix" to "Dto"
     ))
 }
 

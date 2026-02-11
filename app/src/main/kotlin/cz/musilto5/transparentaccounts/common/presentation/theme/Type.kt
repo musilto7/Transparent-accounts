@@ -1,4 +1,4 @@
-package cz.musilto5.transparentaccounts.presentation.theme
+package cz.musilto5.transparentaccounts.common.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

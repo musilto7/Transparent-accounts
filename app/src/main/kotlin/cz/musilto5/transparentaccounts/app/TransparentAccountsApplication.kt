@@ -1,7 +1,7 @@
-package cz.musilto5.transparentaccounts
+package cz.musilto5.transparentaccounts.app
 
 import android.app.Application
-import cz.musilto5.transparentaccounts.di.appModule
+import cz.musilto5.transparentaccounts.app.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

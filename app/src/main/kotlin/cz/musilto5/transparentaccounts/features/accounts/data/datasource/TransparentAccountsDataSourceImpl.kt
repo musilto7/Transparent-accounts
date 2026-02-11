@@ -1,12 +1,11 @@
-package cz.musilto5.transparentaccounts.data.datasource
+package cz.musilto5.transparentaccounts.features.accounts.data.datasource
 
-import cz.musilto5.transparentaccounts.domain.model.AccountId
-import cz.musilto5.transparentaccounts.model.AccountDetail
-import cz.musilto5.transparentaccounts.model.AccountListResponse
-import cz.musilto5.transparentaccounts.model.TransactionListResponse
-import cz.musilto5.transparentaccounts.service.DefaultApi
+import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountId
+import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountDetailDto
+import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountListResponseDto
+import cz.musilto5.transparentaccounts.features.accounts.data.dto.TransactionListResponseDto
+import cz.musilto5.transparentaccounts.features.accounts.data.api.DefaultApi
 import kotlinx.datetime.LocalDate
-import org.openapitools.client.infrastructure.ApiClient
 
 class TransparentAccountsDataSourceImpl(
     private val baseUrl: String = "https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v3/transparentAccounts",
@@ -23,13 +22,13 @@ class TransparentAccountsDataSourceImpl(
         page: Int,
         size: Int,
         filter: String?
-    ): AccountListResponse {
+    ): AccountListResponseDto {
         val response = api.getAccounts(page = page, size = size, filter = filter)
         if (!response.success) throw TransparentAccountsApiException(response.status, "getAccounts failed")
         return response.body()
     }
 
-    override suspend fun getAccountDetail(id: AccountId): AccountDetail {
+    override suspend fun getAccountDetail(id: AccountId): AccountDetailDto {
         val response = api.getAccountDetail(id = id.value)
         if (!response.success) throw TransparentAccountsApiException(response.status, "getAccountDetail failed")
         return response.body()
@@ -41,7 +40,7 @@ class TransparentAccountsDataSourceImpl(
         size: Int?,
         dateFrom: LocalDate?,
         dateTo: LocalDate?
-    ): TransactionListResponse {
+    ): TransactionListResponseDto {
         val response = api.getAccountTransactions(
             id = id.value,
             page = page,

@@ -1,4 +1,4 @@
-package cz.musilto5.transparentaccounts.domain.model
+package cz.musilto5.transparentaccounts.features.accounts.domain.model
 
 /**
  * Domain identity for a transparent account (id or account number).

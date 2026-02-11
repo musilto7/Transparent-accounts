@@ -1,9 +1,9 @@
-package cz.musilto5.transparentaccounts.data.paging
+package cz.musilto5.transparentaccounts.features.accounts.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import cz.musilto5.transparentaccounts.domain.repository.TransparentAccountsRepository
-import cz.musilto5.transparentaccounts.model.AccountReference
+import cz.musilto5.transparentaccounts.features.accounts.domain.repository.TransparentAccountsRepository
+import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountReferenceDto
 
 /**
  * Paging 3 source that loads transparent accounts page by page.
@@ -12,9 +12,9 @@ class TransparentAccountsPagingSource(
     private val repository: TransparentAccountsRepository,
     private val pageSize: Int = 20,
     private val filter: String? = null
-) : PagingSource<Int, AccountReference>() {
+) : PagingSource<Int, AccountReferenceDto>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AccountReference> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AccountReferenceDto> {
         val page = params.key ?: 0
         return try {
             val response = repository.getAccounts(
@@ -34,7 +34,7 @@ class TransparentAccountsPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, AccountReference>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, AccountReferenceDto>): Int? {
         return state.anchorPosition?.let { pos ->
             state.closestPageToPosition(pos)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(pos)?.nextKey?.minus(1)
