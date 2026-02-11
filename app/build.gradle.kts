@@ -85,6 +85,10 @@ openApiGenerate {
     ))
 }
 
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
+
 tasks.whenTaskAdded {
     if (name == "compileDebugKotlin" || name == "compileReleaseKotlin") {
         dependsOn("openApiGenerate")
@@ -112,7 +116,9 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
     implementation(libs.lifecycle.viewmodel.compose)
-    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.kotest.runner.junit5)
+    testImplementation(libs.kotest.assertions.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
