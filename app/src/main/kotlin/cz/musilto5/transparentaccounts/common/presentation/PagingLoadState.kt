@@ -11,8 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
+import cz.musilto5.transparentaccounts.common.presentation.theme.TransparentAccountsTheme
 
 /**
  * Adds a single [LazyListScope] item for refresh [LoadState]: full-screen loading or error message.
@@ -90,5 +92,29 @@ fun AppendLoadingItem() {
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FullScreenLoadingPreview() {
+    TransparentAccountsTheme {
+        FullScreenLoading()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PagingErrorItemPreview() {
+    TransparentAccountsTheme {
+        PagingErrorItem(message = "Network error", prefix = "Chyba: ")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AppendLoadingItemPreview() {
+    TransparentAccountsTheme {
+        AppendLoadingItem()
     }
 }

@@ -1,7 +1,7 @@
 package cz.musilto5.transparentaccounts.features.accounts.di
 
-import cz.musilto5.transparentaccounts.features.accounts.presentation.AccountDetailViewModel
-import cz.musilto5.transparentaccounts.features.accounts.presentation.AccountsViewModel
+import cz.musilto5.transparentaccounts.features.accounts.presentation.viewmodel.AccountDetailViewModel
+import cz.musilto5.transparentaccounts.features.accounts.presentation.viewmodel.AccountsViewModel
 import cz.musilto5.transparentaccounts.features.accounts.presentation.mapper.AccountDetailToViewObjectMapper
 import cz.musilto5.transparentaccounts.features.accounts.presentation.mapper.AccountToViewObjectMapper
 import org.koin.androidx.viewmodel.dsl.viewModel

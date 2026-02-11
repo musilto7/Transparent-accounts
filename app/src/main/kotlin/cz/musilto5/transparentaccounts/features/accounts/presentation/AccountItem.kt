@@ -8,7 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import cz.musilto5.transparentaccounts.common.presentation.theme.TransparentAccountsTheme
 import cz.musilto5.transparentaccounts.features.accounts.presentation.model.AccountViewObject
 
 /**
@@ -61,6 +63,44 @@ fun AccountItem(
             text = viewObject.currency,
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AccountListItemPlaceholderPreview() {
+    TransparentAccountsTheme {
+        AccountListItem(state = AccountListItemState.Placeholder)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AccountListItemLoadedPreview() {
+    TransparentAccountsTheme {
+        AccountListItem(
+            state = AccountListItemState.Loaded(
+                AccountViewObject(
+                    name = "Sample Account",
+                    bankAccount = "123456/0800",
+                    currency = "CZK"
+                )
+            )
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AccountItemPreview() {
+    TransparentAccountsTheme {
+        AccountItem(
+            viewObject = AccountViewObject(
+                name = "Sample Account",
+                bankAccount = "123456/0800",
+                currency = "CZK"
+            )
         )
     }
 }

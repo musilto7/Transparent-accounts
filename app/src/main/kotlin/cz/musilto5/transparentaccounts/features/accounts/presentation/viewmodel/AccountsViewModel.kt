@@ -1,4 +1,4 @@
-package cz.musilto5.transparentaccounts.features.accounts.presentation
+package cz.musilto5.transparentaccounts.features.accounts.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager

@@ -3,6 +3,7 @@ package cz.musilto5.transparentaccounts.common.presentation.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -10,6 +11,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -47,4 +49,20 @@ fun TransparentAccountsTheme(
             }
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TransparentAccountsThemeLightPreview() {
+    TransparentAccountsTheme(darkTheme = false, dynamicColor = false) {
+        Text(text = "Theme preview", style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TransparentAccountsThemeDarkPreview() {
+    TransparentAccountsTheme(darkTheme = true, dynamicColor = false) {
+        Text(text = "Theme preview", style = MaterialTheme.typography.bodyLarge)
+    }
 }
