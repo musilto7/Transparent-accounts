@@ -10,7 +10,7 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.model.Transactio
 import cz.musilto5.transparentaccounts.features.accounts.domain.repository.TransparentAccountsRepository
 import kotlinx.datetime.LocalDate
 
-class TransparentAccountsRepositoryImpl(
+internal class TransparentAccountsRepositoryImpl(
     private val dataSource: TransparentAccountsDataSource,
     private val accountDtoMapper: AccountDtoMapper,
     private val transactionDtoMapper: TransactionDtoMapper

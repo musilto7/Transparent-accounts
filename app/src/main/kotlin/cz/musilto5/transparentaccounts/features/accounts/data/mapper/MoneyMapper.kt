@@ -3,7 +3,7 @@ package cz.musilto5.transparentaccounts.features.accounts.data.mapper
 import cz.musilto5.transparentaccounts.common.domain.model.Currency
 import cz.musilto5.transparentaccounts.common.domain.model.Money
 
-class MoneyMapper(
+internal class MoneyMapper(
     private val currencyMapper: CurrencyMapper
 ) {
     fun map(currency: String?, amount: Double?): Money? = run {

@@ -7,7 +7,7 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.model.Transactio
 import cz.musilto5.transparentaccounts.features.accounts.domain.model.TransactionListResult
 import cz.musilto5.transparentaccounts.features.accounts.domain.model.TransactionSender
 
-class TransactionDtoMapper(
+internal class TransactionDtoMapper(
     private val bankAccountIdentifierMapper: BankAccountIdentifierMapper,
     private val moneyMapper: MoneyMapper,
     private val symbolMapper: SymbolMapper,

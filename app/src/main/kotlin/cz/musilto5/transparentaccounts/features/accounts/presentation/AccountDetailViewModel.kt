@@ -6,7 +6,7 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.repository.Trans
 import cz.musilto5.transparentaccounts.features.accounts.presentation.mapper.AccountDetailToViewObjectMapper
 import cz.musilto5.transparentaccounts.features.accounts.presentation.model.AccountDetailViewObject
 
-class AccountDetailViewModel(
+internal class AccountDetailViewModel(
     private val repository: TransparentAccountsRepository,
     private val accountDetailToViewObjectMapper: AccountDetailToViewObjectMapper
 ) : ViewModel() {

@@ -7,7 +7,7 @@ import cz.musilto5.transparentaccounts.features.accounts.data.dto.TransactionLis
 import cz.musilto5.transparentaccounts.features.accounts.data.api.DefaultApi
 import kotlinx.datetime.LocalDate
 
-class TransparentAccountsDataSourceImpl(
+internal class TransparentAccountsDataSourceImpl(
     private val api: DefaultApi
 ) : TransparentAccountsDataSource {
 
@@ -46,7 +46,7 @@ class TransparentAccountsDataSourceImpl(
     }
 }
 
-class TransparentAccountsApiException(
+internal class TransparentAccountsApiException(
     val statusCode: Int,
     message: String
 ) : Exception("API error $statusCode: $message")

@@ -8,7 +8,7 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.repository.Trans
 /**
  * Paging 3 source that loads transparent accounts page by page.
  */
-class TransparentAccountsPagingSource(
+internal class TransparentAccountsPagingSource(
     private val repository: TransparentAccountsRepository,
     private val pageSize: Int = 20,
     private val filter: String? = null

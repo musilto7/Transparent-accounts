@@ -7,7 +7,7 @@ import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
 import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountDetail
 import cz.musilto5.transparentaccounts.features.accounts.domain.model.AccountListResult
 
-class AccountDtoMapper(
+internal class AccountDtoMapper(
     private val accountIdMapper: AccountIdMapper,
     private val bankAccountIdentifierMapper: BankAccountIdentifierMapper,
     private val currencyMapper: CurrencyMapper,

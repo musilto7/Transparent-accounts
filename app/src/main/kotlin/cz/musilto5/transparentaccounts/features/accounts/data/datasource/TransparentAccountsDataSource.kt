@@ -6,7 +6,7 @@ import cz.musilto5.transparentaccounts.features.accounts.data.dto.AccountListRes
 import cz.musilto5.transparentaccounts.features.accounts.data.dto.TransactionListResponseDto
 import kotlinx.datetime.LocalDate
 
-interface TransparentAccountsDataSource {
+internal interface TransparentAccountsDataSource {
 
     suspend fun getAccounts(
         page: Int = 0,

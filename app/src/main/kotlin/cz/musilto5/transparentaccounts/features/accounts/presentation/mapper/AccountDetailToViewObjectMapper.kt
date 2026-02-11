@@ -9,7 +9,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
 
-class AccountDetailToViewObjectMapper {
+internal class AccountDetailToViewObjectMapper {
 
     private val decimalFormat = DecimalFormat(
         "#,##0.00",
