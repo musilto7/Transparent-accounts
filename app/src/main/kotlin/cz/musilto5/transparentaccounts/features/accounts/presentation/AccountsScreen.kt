@@ -16,7 +16,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import cz.musilto5.transparentaccounts.common.domain.model.AccountId
-import cz.musilto5.transparentaccounts.common.domain.error.AppErrorFormatter
+import cz.musilto5.transparentaccounts.common.presentation.error.AppErrorFormatter
 import cz.musilto5.transparentaccounts.common.domain.error.ExceptionToAppErrorMapper
 import cz.musilto5.transparentaccounts.common.presentation.ErrorScreen
 import cz.musilto5.transparentaccounts.common.presentation.FullScreenLoading

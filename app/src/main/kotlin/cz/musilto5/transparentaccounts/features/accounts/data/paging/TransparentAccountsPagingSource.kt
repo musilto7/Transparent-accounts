@@ -3,7 +3,6 @@ package cz.musilto5.transparentaccounts.features.accounts.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import cz.musilto5.transparentaccounts.common.domain.model.PagingInfo
-import cz.musilto5.transparentaccounts.features.accounts.ACCOUNTS_PAGE_SIZE
 import cz.musilto5.transparentaccounts.features.accounts.domain.model.Account
 import cz.musilto5.transparentaccounts.features.accounts.domain.repository.TransparentAccountsRepository
 
@@ -18,6 +17,7 @@ internal class TransparentAccountsPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Account> {
         val page = params.key ?: 0
+        // force page size 50
         val pageSize = ACCOUNTS_PAGE_SIZE
         return try {
             val result = repository.getAccounts(

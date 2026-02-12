@@ -15,8 +15,7 @@ val accountsDataModule = module {
     single<TransparentAccountsRepository> {
         TransparentAccountsRepositoryImpl(
             dataSource = get(),
-            accountDtoMapper = get(),
-            transactionDtoMapper = get()
+            accountDtoMapper = get()
         )
     }
 }

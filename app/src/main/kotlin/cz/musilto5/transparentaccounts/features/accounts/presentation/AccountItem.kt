@@ -43,11 +43,16 @@ fun AccountListItem(
 ) {
     when (state) {
         is AccountsScreenItemState.Placeholder -> AccountListItemPlaceholder(modifier = modifier)
-        is AccountsScreenItemState.Loaded -> AccountItem(
-            viewObject = state.viewObject,
-            modifier = modifier,
-            onClick = { onAccountClick?.invoke(state.viewObject.id) }
-        )
+        is AccountsScreenItemState.Loaded -> {
+            val canNavigate = onAccountClick != null
+            AccountItem(
+                viewObject = state.viewObject,
+                modifier = modifier,
+                onClick = if (canNavigate) {
+                    { onAccountClick?.invoke(state.viewObject.id) }
+                } else null
+            )
+        }
     }
 }
 
@@ -93,13 +98,16 @@ private fun AccountListItemPlaceholder(modifier: Modifier = Modifier) {
 fun AccountItem(
     viewObject: AccountViewObject,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: (() -> Unit)? = null,
 ) {
     val spacing = LocalAccountListSpacing.current
+    val cardModifier = if (onClick != null) {
+        modifier.fillMaxWidth().clickable(onClick = onClick)
+    } else {
+        modifier.fillMaxWidth()
+    }
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick),
+        modifier = cardModifier,
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainerLow

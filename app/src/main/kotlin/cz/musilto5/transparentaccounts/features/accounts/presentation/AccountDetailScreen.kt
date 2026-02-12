@@ -34,7 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cz.musilto5.transparentaccounts.R
 import cz.musilto5.transparentaccounts.app.navigation.AccountDetail
-import cz.musilto5.transparentaccounts.common.domain.error.AppErrorFormatter
+import cz.musilto5.transparentaccounts.common.presentation.error.AppErrorFormatter
 import cz.musilto5.transparentaccounts.common.presentation.ErrorScreen
 import cz.musilto5.transparentaccounts.common.presentation.theme.LocalAccountListSpacing
 import cz.musilto5.transparentaccounts.common.presentation.theme.TransparentAccountsTheme

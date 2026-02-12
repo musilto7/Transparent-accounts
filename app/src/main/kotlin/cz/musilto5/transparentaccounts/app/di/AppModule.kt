@@ -1,7 +1,7 @@
 package cz.musilto5.transparentaccounts.app.di
 
-import cz.musilto5.transparentaccounts.common.domain.error.AppErrorFormatter
 import cz.musilto5.transparentaccounts.common.domain.error.ExceptionToAppErrorMapper
+import cz.musilto5.transparentaccounts.common.presentation.error.AppErrorFormatter
 import cz.musilto5.transparentaccounts.features.accounts.di.accountsModule
 import org.koin.dsl.module
 

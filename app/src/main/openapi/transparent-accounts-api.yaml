@@ -61,52 +61,6 @@ components:
             note:
               type: string
 
-    TransactionListResponse:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-        pageSize:
-          type: integer
-        pageCount:
-          type: integer
-        recordCount:
-          type: integer
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-
-    Transaction:
-      type: object
-      properties:
-        amount:
-          type: object
-          properties:
-            value:
-              type: number
-            currency:
-              type: string
-        processingDate:
-          type: string
-          format: date-time
-        description:
-          type: string
-        sender:
-          type: object
-          properties:
-            name:
-              type: string
-            accountNumber:
-              type: string
-            bankCode:
-              type: string
-        variableSymbol:
-          type: string
-        constantSymbol:
-          type: string
-        specificSymbol:
-          type: string
 
 security:
   - ApiKeyAuth: []
@@ -161,40 +115,3 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountDetail'
 
-  /{id}/transactions:
-    get:
-      summary: Seznam transakcí na účtu
-      operationId: getAccountTransactions
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-        - name: size
-          in: query
-          schema:
-            type: integer
-        - name: dateFrom
-          in: query
-          schema:
-            type: string
-            format: date
-          description: Datum od (YYYY-MM-DD)
-        - name: dateTo
-          in: query
-          schema:
-            type: string
-            format: date
-          description: Datum do (YYYY-MM-DD)
-      responses:
-        '200':
-          description: Historie transakcí
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionListResponse'

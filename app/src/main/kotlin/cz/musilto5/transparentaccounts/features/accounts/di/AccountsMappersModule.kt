@@ -7,8 +7,6 @@ import cz.musilto5.transparentaccounts.features.accounts.data.mapper.CurrencyMap
 import cz.musilto5.transparentaccounts.features.accounts.data.mapper.IbanMapper
 import cz.musilto5.transparentaccounts.features.accounts.data.mapper.MoneyMapper
 import cz.musilto5.transparentaccounts.features.accounts.data.mapper.PagingInfoMapper
-import cz.musilto5.transparentaccounts.features.accounts.data.mapper.SymbolMapper
-import cz.musilto5.transparentaccounts.features.accounts.data.mapper.TransactionDtoMapper
 import org.koin.dsl.module
 
 val accountsMappersModule = module {
@@ -18,7 +16,6 @@ val accountsMappersModule = module {
     single { CurrencyMapper() }
     single { MoneyMapper(currencyMapper = get()) }
     single { IbanMapper() }
-    single { SymbolMapper() }
     single { PagingInfoMapper() }
 
     single {
@@ -32,12 +29,4 @@ val accountsMappersModule = module {
         )
     }
 
-    single {
-        TransactionDtoMapper(
-            bankAccountIdentifierMapper = get(),
-            moneyMapper = get(),
-            symbolMapper = get(),
-            pagingInfoMapper = get()
-        )
-    }
 }

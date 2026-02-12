@@ -1,4 +1,4 @@
-package cz.musilto5.transparentaccounts.features.accounts
+package cz.musilto5.transparentaccounts.features.accounts.data.paging
 
 /**
  * Default page size for accounts list paging.

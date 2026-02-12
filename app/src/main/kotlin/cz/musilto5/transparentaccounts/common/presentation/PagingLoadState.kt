@@ -22,32 +22,6 @@ import androidx.paging.LoadState
 import cz.musilto5.transparentaccounts.common.presentation.theme.TransparentAccountsTheme
 
 /**
- * Adds a single [LazyListScope] item for refresh [LoadState]: full-screen loading or error message.
- * @param errorMessage User-visible error text (e.g. from [stringResource]); raw exception message is not shown.
- * @param onRetry Called when the user taps retry; pass to allow recovery from error.
- */
-fun LazyListScope.refreshLoadStateItem(
-    state: LoadState,
-    errorPrefix: String,
-    errorMessage: String,
-    onRetry: (() -> Unit)? = null
-) {
-    when (state) {
-        is LoadState.Loading -> item {
-            FullScreenLoading()
-        }
-        is LoadState.Error -> item {
-            PagingErrorItem(
-                message = errorMessage,
-                prefix = errorPrefix,
-                onRetry = onRetry
-            )
-        }
-        else -> {}
-    }
-}
-
-/**
  * Adds a single [LazyListScope] item for append [LoadState]: footer loading or error message.
  * @param errorMessage User-visible error text (e.g. from [stringResource]); raw exception message is not shown.
  * @param onRetry Called when the user taps retry; pass to allow recovery from error.
@@ -56,7 +30,7 @@ fun LazyListScope.appendLoadStateItem(
     state: LoadState,
     errorPrefix: String,
     errorMessage: String,
-    onRetry: (() -> Unit)? = null
+    onRetry: (() -> Unit)? = null,
 ) {
     when (state) {
         is LoadState.Loading -> item {
@@ -90,7 +64,7 @@ fun PagingErrorItem(
     message: String,
     prefix: String = "",
     modifier: Modifier = Modifier,
-    onRetry: (() -> Unit)? = null
+    onRetry: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -135,7 +109,7 @@ private fun FullScreenLoadingPreview() {
 @Composable
 private fun PagingErrorItemPreview() {
     TransparentAccountsTheme {
-        PagingErrorItem(message = stringResource(R.string.preview_error_message), prefix = stringResource(R.string.error_prefix))
+        PagingErrorItem(message = stringResource(R.string.preview_error_message), prefix = stringResource(R.string.error_prefix)) {}
     }
 }
 
