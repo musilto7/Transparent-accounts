@@ -37,8 +37,6 @@ components:
     AccountReference:
       type: object
       properties:
-        id:
-          type: string
         accountNumber:
           type: string
         bankCode:

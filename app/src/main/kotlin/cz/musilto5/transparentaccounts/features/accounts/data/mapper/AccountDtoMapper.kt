@@ -17,7 +17,7 @@ internal class AccountDtoMapper(
 ) {
 
     fun mapToAccount(dto: AccountReferenceDto): Account = Account(
-        id = accountIdMapper.map(dto.id),
+        id = accountIdMapper.map(dto.accountNumber),
         bankAccount = bankAccountIdentifierMapper.map(dto.accountNumber, dto.bankCode),
         name = dto.name,
         currency = currencyMapper.map(dto.currency)
@@ -34,7 +34,7 @@ internal class AccountDtoMapper(
     )
 
     fun mapToAccountDetail(dto: AccountDetailDto): AccountDetail = AccountDetail(
-        id = accountIdMapper.map(dto.id),
+        id = accountIdMapper.map(dto.accountNumber),
         bankAccount = bankAccountIdentifierMapper.map(dto.accountNumber, dto.bankCode),
         name = dto.name,
         balance = moneyMapper.map(dto.currency, dto.balance?.toDouble()),

@@ -5,6 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import cz.musilto5.transparentaccounts.features.accounts.ACCOUNTS_PAGE_SIZE
 import cz.musilto5.transparentaccounts.features.accounts.data.paging.TransparentAccountsPagingSource
 import cz.musilto5.transparentaccounts.features.accounts.domain.repository.TransparentAccountsRepository
 import cz.musilto5.transparentaccounts.features.accounts.presentation.mapper.AccountToViewObjectMapper
@@ -17,17 +18,14 @@ class AccountsViewModel(
     private val accountToViewObjectMapper: AccountToViewObjectMapper
 ) : ViewModel() {
 
-    private val pageSize = 20
-
     val accountsFlow: Flow<PagingData<AccountViewObject>> = Pager(
         config = PagingConfig(
-            pageSize = pageSize,
+            pageSize = ACCOUNTS_PAGE_SIZE,
             enablePlaceholders = false
         ),
         pagingSourceFactory = {
             TransparentAccountsPagingSource(
                 repository = repository,
-                pageSize = pageSize,
                 filter = null
             )
         }

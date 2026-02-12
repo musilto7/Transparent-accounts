@@ -11,7 +11,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import cz.musilto5.transparentaccounts.R
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -55,7 +57,7 @@ fun TransparentAccountsTheme(
 @Composable
 private fun TransparentAccountsThemeLightPreview() {
     TransparentAccountsTheme(darkTheme = false, dynamicColor = false) {
-        Text(text = "Theme preview", style = MaterialTheme.typography.bodyLarge)
+        Text(text = stringResource(R.string.preview_theme_text), style = MaterialTheme.typography.bodyLarge)
     }
 }
 
@@ -63,6 +65,6 @@ private fun TransparentAccountsThemeLightPreview() {
 @Composable
 private fun TransparentAccountsThemeDarkPreview() {
     TransparentAccountsTheme(darkTheme = true, dynamicColor = false) {
-        Text(text = "Theme preview", style = MaterialTheme.typography.bodyLarge)
+        Text(text = stringResource(R.string.preview_theme_text), style = MaterialTheme.typography.bodyLarge)
     }
 }
